@@ -1,13 +1,15 @@
 package pages;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import models.MovieModel;
 import org.openqa.selenium.Keys;
 
+import java.io.File;
 import java.util.List;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
-import static  com.codeborne.selenide.Condition.text;
 
 public class MoviePage {
 
@@ -23,13 +25,24 @@ public class MoviePage {
         $("input[name=release_date]").setValue(movie.releaseDate);
         this.inputCast(movie.cast);
         $("textarea[name=overview]").setValue(movie.plot);
+        this.upload(movie.cover);
+        $("#create-movie").click();
         return this;
     }
 
-    private void inputCast(List<String> cast){
-        SelenideElement element = $(".cast");
+    public ElementsCollection items(){
+        return $$("table tbody tr");
+    }
 
-        for(String actor : cast) {
+    private void upload(File cover) {
+        String jsScript = "document.getElementById('upcover').classList.remove('el-upload_input')";
+        executeJavaScript(jsScript);
+        $("#upcover").uploadFile(cover);
+    }
+
+    private void inputCast(List<String> cast) {
+        SelenideElement element = $(".cast");
+        for (String actor : cast) {
             element.setValue(actor);
             element.sendKeys(Keys.TAB);
         }

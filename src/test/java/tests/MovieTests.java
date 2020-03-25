@@ -6,9 +6,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 
 public class MovieTests extends BaseTest {
 
@@ -22,14 +22,6 @@ public class MovieTests extends BaseTest {
 
     @Test
     public void shouldRegisterANewMovie() {
-        String title = "Jumanji - Próxima fase";
-        String status = "Pré-venda";
-        String year = "2020";
-        String releaseDate = "16/01/2020";
-        List<String> cast = Arrays.asList("The Rock", "Jack Black", "Kevin Hart", "Karen Gillan", "Danny DeVito");
-        String plot = "Tentado a revisitar o mundo de Jumanji, Spencer decide" +
-                "consertar o bug no jogo do game que permite que sejam transportados ao local";
-
         MovieModel movieData = new MovieModel(
                 "Jumanji - Próxima fase",
                 "Pré-venda",
@@ -37,9 +29,12 @@ public class MovieTests extends BaseTest {
                 "16/01/2020",
                 Arrays.asList("The Rock", "Jack Black", "Kevin Hart", "Karen Gillan", "Danny DeVito"),
                 "Tentado a revisitar o mundo de Jumanji, Spencer decide"
-                       + " consertar o bug no jogo do game que permite que sejam transportados ao local"
+                        + " consertar o bug no jogo do game que permite que sejam transportados ao local",
+                "jumanji2.jpg"
         );
-
-        movie.add().create(movieData);
+        movie
+                .add()
+                .create(movieData)
+                .items().findBy(text(movieData.title)).shouldBe(visible);
     }
 }
