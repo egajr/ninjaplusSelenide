@@ -13,6 +13,12 @@ import static com.codeborne.selenide.Condition.visible;
 public class MovieTests extends BaseTest {
     private Database db;
 
+    @BeforeSuite
+    public void uniqueTime(){
+        db = new Database();
+        db.resetMovies();
+    }
+
     @BeforeMethod
     public void setup() {
         login
@@ -21,10 +27,9 @@ public class MovieTests extends BaseTest {
         side.loggedUser().shouldHave(text("Eder Junior"));
     }
 
-    @BeforeSuite
-    public void uniqueTime(){
-        db = new Database();
-        db.resetMovies();
+    @AfterMethod
+    public void cleanUp() {
+        login.clearSession();
     }
 
     @Test
@@ -58,10 +63,5 @@ public class MovieTests extends BaseTest {
     public void shouldSearchTwoMovies(){
         //db.insertMovies();
         movie.search("Bad Boys").items().shouldHaveSize(2);
-    }
-
-    @AfterMethod
-    public void cleanUp() {
-        login.clearSession();
     }
 }
