@@ -30,7 +30,7 @@ INSERT INTO public.movies(
 )
 VALUES
 	(
-		'Bad Boys II', 'Em breve', '2003', '2003/09/30',
+		'Bad Boys II', 'Disponível', '2003', '2003/09/30',
 		'{"Will Smith","Martin Lawrence","Gabrielle Union","Joe Pantoliano", "JJordi Mollà"}',
 		'Os detetives da Narcóticos Marcus Burnett e Mike Lowrey são designados para investigar a proliferação do ecstasy na cidade de Miami.',
 		'BadBoys2.jpg',current_timestamp,current_timestamp

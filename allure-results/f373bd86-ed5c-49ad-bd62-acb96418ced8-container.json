@@ -1,0 +1,1 @@
+{"uuid":"f373bd86-ed5c-49ad-bd62-acb96418ced8","name":"Default Suite","children":["b56a6541-ad5b-47eb-b1f1-cb3ed04a1240"],"befores":[{"name":"uniqueTime","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1585447982746,"stop":1585447983058}],"afters":[],"links":[],"start":1585447982708,"stop":1585448023496}
